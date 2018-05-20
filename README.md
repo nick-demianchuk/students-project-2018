@@ -1,1 +1,1 @@
-# students-project-2018
+# Simple flask application for students of EPAM course

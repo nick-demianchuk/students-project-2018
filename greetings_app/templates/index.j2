@@ -1,0 +1,13 @@
+<!doctype html>
+<title>Greetings, stranger!</title>
+
+<h1>Leave your greeting</h1>
+<form action="/" method="post">
+  <input type="text" name="name">
+  <input type="submit" value="Отправить">
+</form>
+
+{% for stranger in strangers %}
+<p>{{ stranger.name }} greeted us {{ stranger.counter }} time
+{%- if stranger.counter > 1 %}s{% endif %}</p>
+{% endfor %}
