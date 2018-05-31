@@ -9,9 +9,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DB_URL']
 db = SQLAlchemy(app)
 db.create_all()
 
+
 class Stranger(db.Model):
-    name = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
-    counter =db.Column(db.Integer, nullable=False)
+    name = db.Column(db.String(80), unique=True,
+                     nullable=False, primary_key=True)
+    counter = db.Column(db.Integer, nullable=False)
+
 
 def get_max(all_strangers):
     max_stranger = Stranger(name='', counter=0)
@@ -20,12 +23,15 @@ def get_max(all_strangers):
             max_stranger = stranger
     return max_stranger
 
+
 def get_stranger(name):
     stranger = Stranger.query.filter_by(name=name).first()
     return stranger if stranger else Stranger(name=name, counter=0)
 
+
 def get_all_strangers():
     return Stranger.query.all()
+
 
 def update_stranger(stranger, db):
     stranger.counter += 1
@@ -41,7 +47,8 @@ def greetings():
         update_stranger(stranger, db)
 
     strangers = get_all_strangers()
-    return render_template('index.j2', strangers=strangers, max_stranger=get_max(strangers))
+    return render_template('index.j2', strangers=strangers,
+                           max_stranger=get_max(strangers))
 
 
 if __name__ == '__main__':
