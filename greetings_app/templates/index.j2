@@ -11,3 +11,6 @@
 <p>{{ stranger.name }} greeted us {{ stranger.counter }} time
 {%- if stranger.counter > 1 %}s{% endif %}</p>
 {% endfor %}
+
+<br/>
+<p><b> The most active is {{ max_stranger.name }} with {{ max_stranger.counter }} greetings </b></p>
