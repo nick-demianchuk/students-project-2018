@@ -7,13 +7,13 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DB_URL']
 
 db = SQLAlchemy(app)
-db.create_all()
-
 
 class Stranger(db.Model):
     name = db.Column(db.String(80), unique=True,
                      nullable=False, primary_key=True)
     counter = db.Column(db.Integer, nullable=False)
+
+db.create_all()
 
 
 def get_max(all_strangers):
